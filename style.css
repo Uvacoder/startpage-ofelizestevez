@@ -15,7 +15,7 @@
 
 * {
 	font-family: "t kiwi Wide";
-	font-size: 10px;
+	font-size:22px;
 }
 
 /*body, html {
@@ -40,9 +40,10 @@ main {
 	display: flex;
 	overflow-y: auto;
 	flex-flow: row wrap;
-	width: 380px;
+	width: 125%;
+	height: 300%;
 	position: relative;
-	top: -10px;
+	top: 10px;
 }
 
 #clock {
@@ -74,6 +75,15 @@ main {
 	display: block;
 	text-align: center;
 }
+
+input {
+	min-width: 99%;
+	padding: 5px 0px;
+	margin: 15px 0px;
+	background-color: var(--bglight);
+	border: 2px solid var(--bglighter);
+  	border-radius: 4px;
+  }
 
 a:visited, a {
 	color: var(--fgdark);
@@ -129,13 +139,19 @@ a:hover, a:visited:hover {
 */
 
 .title {
-	display: none;
+	padding: 5px 15px;
+	width: auto;
+	display: block;
+	text-align: left;
+	color: var(--fglight);
+	font-size: 100%;
+	
 }
 
 body {
 	position:absolute;
 	top: 50%;
-	left: 50%;
+	left: 45%;
 	transform:translate(-50%,-50%);
 }
 
@@ -156,5 +172,22 @@ section {
 }
 
 section:hover {
+	background-color: var(--bglighter);
+}
+
+header {
+	margin: 12px;
+	padding: 12px;
+	/*border: 8px solid var(--fgdark);*/
+	box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.13);
+}
+
+header {
+	background-color: var(--bglight);
+	border-radius: 4px;
+	width: 116.8%;
+}
+
+header:hover {
 	background-color: var(--bglighter);
 }
