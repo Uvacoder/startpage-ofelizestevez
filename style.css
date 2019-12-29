@@ -1,14 +1,14 @@
 
 :root {
---bgdark: #232836;
---bglight: #282e3f;
---bglighter: #2f364a;
+--bgdark: #202020;
+--bglight: #242424;
+--bglighter: #393939;
 
---fgdark: #8686a4;
---fglight: #ccccfa;
+--fgdark: #919191  ;
+--fglight: #bdbdbd  ;
 
---accent: #d39ceb;
---border: #2f364a;
+--accent: #5657f5;
+--border: #242424;
 --disabled: #696969;
 --hover: #ffffff;
 }
