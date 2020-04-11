@@ -7,7 +7,7 @@
 --fgdark: #919191  ;
 --fglight: #bdbdbd  ;
 
---accent: #5657f5;
+--accent: #8089B9;
 --border: #242424;
 --disabled: #696969;
 --hover: #ffffff;
@@ -23,9 +23,15 @@
 }*/
 
 html {
+	background: url('bg4.jpg');
+	background-position: top -45px left 0;
+	background-size: 100%;
+	
+	/*
 	background: var(--bgdark);
 	background-position: top -24px left 0;
 	margin-top: -26px;
+	*/
 }
 
 html {
