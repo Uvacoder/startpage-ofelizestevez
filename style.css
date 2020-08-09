@@ -1,13 +1,14 @@
 
 :root {
---bgdark: #202020;
---bglight: #242424;
---bglighter: #393939;
+--bgdark: #ff0000;
+--bglight: #0a0a0a;
+--bglighter: #060606;
+--bgborder: #141414;
 
---fgdark: #919191  ;
---fglight: #bdbdbd  ;
+--fgdark: #cecece;
+--fglight: #bdbdbd;
 
---accent: #8089B9;
+--accent: #b2b5ff;
 --border: #242424;
 --disabled: #696969;
 --hover: #ffffff;
@@ -23,7 +24,7 @@
 }*/
 
 html {
-	background: url('bg4.jpg');
+	background: url('still.png');
 	background-position: top -45px left 0;
 	background-size: 100%;
 	
@@ -87,7 +88,7 @@ input {
 	padding: 5px 0px;
 	margin: 15px 0px;
 	background-color: var(--bglight);
-	border: 2px solid var(--bglighter);
+	border: 2px solid var(--bgborder);
   	border-radius: 4px;
   }
 
