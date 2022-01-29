@@ -10,7 +10,7 @@ function getWeather(position){
     let lat = position.coords.latitude;
     let long = position.coords.longitude;
     let API_KEY = "3446b1a13bc44115410f12384b45e484";
-    let baseURL = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=${API_KEY}`;
+    let baseURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=${API_KEY}`;
     console.log(baseURL)
 
     $.get(baseURL,function(res){
