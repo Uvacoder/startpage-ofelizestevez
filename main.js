@@ -440,7 +440,14 @@ input.addEventListener("keyup", function(event) {
                     suggestion = subreddits[parseInt(suggestion_result.indexOf(Math.min(...suggestion_result)))]
                     autocomplete.innerHTML= input.value.split(" ")[0] + " " +suggestion
                 }
+                else {
+                    suggestion = ""
+                    autocomplete.innerHTML= input.value.split(" ")[0] + " " +suggestion               
+                }
             }
+        }
+        else {
+            autocomplete.innerHTML= ""
         }
     }
   });
