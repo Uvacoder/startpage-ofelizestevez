@@ -1,210 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --background-image:url("backgrounds/00.jpg");
+    --terminal-height: 50vh;
+    --terminal-width: 65vw;
+    --terminal-padding: 30px;
+    --terminal-border-radius:16px;
+
+    --font-family: 'Poppins', sans-serif;
+    --font-size: 1rem;
+
+    --bg-color: #1a1a1a;
+    --fg-color: #fafafa;
+    --primary-color:#6960D6;
+    --secondary-color:#4D299D;
+    --tertiary-color:#340696;
+}
+
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-:root {
-    --background-color: #15131E;
-    --foreground-color: #0A0A0A;
 }
 
 body {
-    background-color: var(--background-color);
-    color: white;
-    font-family: Helvetica, sans-serif;
-}
-
-h1 {
-    font-weight: 400;
-}
-
-/* grid spans */
-
-.two-columns{
-    grid-column: span 2;
-}
-
-.three-rows{
-    grid-row: span 3;
-}
-
-/* background */
-
-.background {
-    filter: blur(6px);
-}
-
-.circle{
-    aspect-ratio: 1;
-    background-color: red;
-    position: absolute;
-    border-radius: 50%;
-}
-
-.circ-1{
-    inset: 5vh 5vw;
-    height: 10vh;
-    background: #f12711;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-}
-
-.circ-2{
-    inset: 10vh 75vw;
-    height: 13vh;
-    background: #00F260;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #0575E6, #00F260); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-}
-.circ-3{
-    inset: 20vh 15vw;
-    height: 45vh;
-    background: #1488CC;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-}
-
-.circ-4{
-    inset: 65vh 55vw;
-    height: 12vh;
-    background: #7F00FF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #E100FF, #7F00FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-}
-.circ-5{
-    inset: 83.5vh 85vw;
-    height: 15vh;
-    background: #ED213A;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #93291E, #ED213A);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #93291E, #ED213A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-}
-
-/* content */
-
-.main-container {
     display: grid;
-    justify-content: center;
     align-items: center;
-    width: 100vw;
-    position: absolute;
-    gap: 1em;
+    justify-content: center;
     height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size);
+    font-family: var(--font-family);
+    color: var(--fg-color);
+
+    background-image: var(--background-image);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
- /* header */
-.header {
+.flex {
     display: flex;
+}
+
+p{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.accent_text {
+    color: var(--primary-color);
+}
+::-webkit-scrollbar {
+    width: 27px;
     
-    font-size: 2.5rem;
-    font-weight: bold;
-    justify-content: space-between;
-    width: 850px;
-    margin-bottom: 0.5em;
 }
 
-.weather {
-    text-align: right;
+::-webkit-scrollbar-track {
+    border: solid 10px transparent;
+    border-radius: var(--terminal-border-radius);
 }
 
-/* middle bars */
-.middle-bar{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1em;
+::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px var(--primary-color);
+    border: solid 10px transparent;
+    border-radius: var(--terminal-border-radius);
 }
 
 
+.terminal {
+    padding: var(--terminal-padding);
+    background-color: var(--bg-color);
+    height: var(--terminal-height);
+    width: var(--terminal-width);
+    border-radius: 16px;
 
-.google-bar {
+    overflow-y: auto;
+}
+
+#input_line {
+    display: flex;
+}
+
+.input {
+    all: initial;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--fg-color);
+    caret-color: var(--tertiary-color);
+    width: 100%;
+    margin-top: 8px;
+
+}
+
+#line_prefix {
+    display: flex;
+}
+
+#username {
+    color: var(--primary-color);
+}
+
+#username_suffix {
+    color: var(--secondary-color);
+}
+
+#username, #username_suffix {
+    margin-right: 10px;
+}
+
+.help_table_key {
+    min-width:20ch;
+    vertical-align:initial;
+}
+
+.text_input {
     position: relative;
-}
+} 
 
-.google-bar .icon{
+#autocomplete {
     position: absolute;
-    inset: 13px 10px;
-    font-size: 1.5em;
-}
-
-.google-bar input{
-    width: 100%;
-    color: white;
-    background-color: var(--foreground-color);
-    border: 0px;
-    height: 50px;
-    border-radius: 5px;
-}
-
-.google-bar input[type=text]{
-    padding: 0px 45px;
-}
-
-.reddit-bar {
-    position: relative;
-}
-
-.reddit-bar .icon{
-    position: absolute;
-    inset: 13px 10px;
-    font-size: 1.5em;
-}
-
-.reddit-bar input{
-    width: 100%;
-    color: white;
-    background-color: #0A0A0A;
-    border: 0px;
-    height: 50px;
-    border-radius: 5px;
-}
-
-.reddit-bar input[type=text]{
-    padding-left: 45px;
-    padding-right: 10px;
-}
-
-/* bookmarks */
-
-.bookmark {
-    display: grid;
-    grid-template-columns: 1fr;
-    height: 50vh;
-    margin: 20px 0px;
-}
-
-.buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1em;
-    margin: 20px 0px;
-    position: relative;
-    cursor: pointer;
-}
-
-.buttons .button {
-    background-color: var(--foreground-color);
-    border-radius: 20px;
-    height: 200.5px;
-    width: 100%;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.buttons .icon {
-    font-size: 3.5em;
-}
-
-.button p {
-    text-align: center;
-}
-
-.icon-selectors {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    z-index: 100000;
+    color: rgba(255, 255, 255, 0.6);
 }

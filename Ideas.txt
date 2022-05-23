@@ -1,0 +1,81 @@
+Ideas
+
+NeoFetch W/ Ascii Art
+
+line-prefix
+
+oscar ~>
+
+Commands
+
+
+help
+clear
+background (bg)
+
+google 1/2/3 (ggle)
+drive 1/2/3 (drv)
+reddit
+idea: try to fill in based off of some code
+
+njit
+canvas
+mysql
+twitter (twt)
+twitch (ttv)
+netflix (netf)
+discord (disc)
+pyload (pyl)
+homeassistant (ha)
+magicmirror (mm)
+pi-hole (pih)
+qbittorrent (qbit)
+
+youtube (yt)
+
+(LITERALLY MY WORST IDEAS?? BECAUSE THIS WOULD REQUIRE ME TO SAVE THOSE COMMANDS IN THE JS???? LIKE HOW THE FUCK WOULD I GO ABOUT FUCKING DOING THAT????)
+create
+function create(args=[]){
+    if (args.includes("--help") || args.length == 0){
+        let create_help = document.createElement("div")
+        create_help.className = "flex";
+        let create_help_0 = document.createElement("p")
+        create_help_0.innerHTML= "Usage:&nbsp;";
+        let create_help_1 = document.createElement("p")
+        create_help_1.innerHTML= "create NAME LINK SHORT_NAME(optional)";
+        create_help_1.classList.add("accent_text")
+
+        create_help.append(create_help_0,create_help_1)
+        output.append(create_help)
+        return;
+    }
+    if (args.length == 2){
+        let new_function = "window."+args[0]+" = function(){  console.log('im here bitch'); }"; 
+        console.log(new_function);
+        // let new_function = "function " + args[0] + "(){ window.location.href='" + args[1] + "'; return 'Redirects to " + args[0] +"';"
+        eval(new_function);
+        console.log("New Function Done!")
+    }
+    if (args.length == 3){}
+    return "Create a new link command!"
+}
+remove (rm)
+
+(NOT THAT BAD OF AN IDEA BUT IM THE ONLTY ONE WHOS GONNA BE USING THIS WEBSITE SO... NO POINT)
+username (user)
+
+
+command template
+function help(args){
+    if args[0] == --help:
+        explain how to use command
+    return "prints out all commands" //this line is going to be used in the help command
+}
+
+var a = { fruit: "apple" },
+    b = { vegetable: "carrot" }
+
+console.log(Object.assign({}, a, b));
+
+other_commands_shortened
+argument_specific_commands_shortened
