@@ -107,7 +107,7 @@ let argument_specific_commands = {
         "shortened": "mm",
     },
     "pi-hole":{
-        "command": "link_opener(http://raspberrypi.home/admin)",
+        "command": "link_opener('http://raspberrypi.home/admin')",
         "message":"Go To Pi-Hole",
         "shortened": "pih",
     },
