@@ -360,8 +360,9 @@ input.addEventListener("keyup", function(event) {
         current_input_line.innerHTML = input_line.innerHTML;
 
         let copy_text_input = current_input_line.getElementsByClassName("text_input")[0]
-        copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("input")[0]);
-        copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("autocomplete")[0]);
+        current_input_line.removeChild(copy_text_input)
+        // copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("input")[0]);
+        // copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("autocomplete")[0]);
         
         let uValue = document.createElement("p");
         uValue.innerHTML = input.value;
