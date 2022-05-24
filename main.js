@@ -68,7 +68,7 @@ let argument_specific_commands = {
         "message":"Go To Canvas",
     },
     "mysql":{
-        "command": "link_opener(https://web.njit.edu/mysql/phpMyAdmin/index.php?server=3&token=e26bab1f4da43e34c65d3d17316b6ffe')",
+        "command": "link_opener('https://web.njit.edu/mysql/phpMyAdmin/index.php?server=3&token=e26bab1f4da43e34c65d3d17316b6ffe')",
         "message":"Go To MySQL",
     },
     "twitter":{
