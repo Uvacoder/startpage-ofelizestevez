@@ -107,7 +107,7 @@ let argument_specific_commands = {
         "shortened": "mm",
     },
     "pi-hole":{
-        "command": "link_opener(http://raspberrypi.home/admin)",
+        "command": "link_opener('http://raspberrypi.home/admin')",
         "message":"Go To Pi-Hole",
         "shortened": "pih",
     },
@@ -360,8 +360,9 @@ input.addEventListener("keyup", function(event) {
         current_input_line.innerHTML = input_line.innerHTML;
 
         let copy_text_input = current_input_line.getElementsByClassName("text_input")[0]
-        copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("input")[0]);
-        copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("autocomplete")[0]);
+        current_input_line.removeChild(copy_text_input)
+        // copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("input")[0]);
+        // copy_text_input.removeChild(current_input_line.getElementsByClassName("text_input")[0].getElementsByClassName("autocomplete")[0]);
         
         let uValue = document.createElement("p");
         uValue.innerHTML = input.value;
@@ -446,7 +447,14 @@ input.addEventListener("keyup", function(event) {
                     suggestion = subreddits[parseInt(suggestion_result.indexOf(Math.min(...suggestion_result)))]
                     autocomplete.innerHTML= input.value.split(" ")[0] + " " +suggestion
                 }
+                else {
+                    suggestion = ""
+                    autocomplete.innerHTML= input.value.split(" ")[0] + " " +suggestion               
+                }
             }
+        }
+        else {
+            autocomplete.innerHTML= ""
         }
     }
   });
