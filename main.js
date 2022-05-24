@@ -417,11 +417,18 @@ input.addEventListener("keyup", function(event) {
         autocomplete.innerHTML = "" 
     }
     else if (event.key === "Control"){
-        input.value = input.value.split(" ")[0] + " " +suggestion
+        if ((input.value.startsWith("r ") || input.value.startsWith("reddit ")) && (suggestion != undefined)){
+            //  && (input.value.split(" ")[1] != "")
+            input.value = input.value.split(" ")[0] + " " +suggestion;
+        }
     }
     // add this else
     else {
-        if (input.value.startsWith("r ") || input.value.startsWith("reddit ")){
+        if(!(input.value.startsWith("r ") || input.value.startsWith("reddit "))){
+            autocomplete.innerHTML = "";
+        }
+        else {
+            autocomplete.innerHTML = "";
             let suggestion_result = [];
             Usubreddit = input.value.split(" ")[1];
             if (Usubreddit == ""){
