@@ -1,5 +1,7 @@
 Ideas
+pre-determined commands()
 
+argumentative commands()
 NeoFetch W/ Ascii Art
 
 line-prefix
