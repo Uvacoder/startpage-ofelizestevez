@@ -323,7 +323,6 @@ function twitch(args=[]){
         switch(sub_command){
             case "c":
             case "channel":
-                alert("https://www.twitch.tv/" + search)
                 window.location.href = "https://www.twitch.tv/" + search;
                 break
             case "s":
