@@ -166,6 +166,32 @@ function create(args = []){
     }
 }
 
+function remove(args = []){
+    if (args.includes("--help") || args.length == 0){
+        describeUsage("remove COMMAND_NAME");
+        describeUsage("rm COMMAND_NAME")
+        textTerminalRespond("Make sure to only use the main command name and not the shortened name.")
+    }
+    else{
+        let desire_rm = args[0];
+        if(pre_determined_commands.hasOwnProperty(desire_rm)){
+            popped_command = pre_determined_commands[desire_rm];
+            delete pre_determined_commands[desire_rm];
+            console.log(popped_command["shortened"])
+            localStorage.removeItem(desire_rm);
+            delete all_commands[desire_rm]
+            delete all_commands_simplified[desire_rm]
+            if(popped_command.hasOwnProperty("shortened")){
+                desire_shortened_rm =  popped_command["shortened"]
+                delete all_commands[desire_shortened_rm]
+            }
+        }
+        else{
+            textTerminalRespond("This command doesn't exist.");
+        }
+    }
+}
+
 function clear(){
     output.innerHTML = ""
 }
@@ -226,8 +252,8 @@ function google(args=[]){
 
 function gmail(args=[]){
     if (args.includes("--help")){
-        describeUsage("gmail NUM")
-        describeUsage("gm NUM")
+        describeUsage("gmail NUM");
+        describeUsage("gm NUM");
     }
     else{
         let arg_num = args[0];
@@ -237,8 +263,8 @@ function gmail(args=[]){
 
 function drive(args=[]){
     if (args.includes("--help")){
-        describeUsage("drive NUM")
-        describeUsage("gd NUM")
+        describeUsage("drive NUM");
+        describeUsage("gd NUM");
     }
     else{
         let arg_num = args[0];
@@ -251,8 +277,8 @@ function reddit(args=[]){
         window.location.href ='https://www.reddit.com/';
     }
     else if (args.includes("--help")){
-        describeUsage("reddit SUBREDDIT(optional)")
-        describeUsage("r SUBREDDIT(optional)")
+        describeUsage("reddit SUBREDDIT(optional)");
+        describeUsage("r SUBREDDIT(optional)");
     }
     else {
         let search = args.join(" ");
@@ -266,8 +292,8 @@ function youtube(args=[]){
         window.location.href ='https://www.youtube.com/';
     }
     else if (args.includes("--help")){
-        describeUsage("youtube SEARCH_QUERY(optional)")
-        describeUsage("yt SEARCH_QUERY(optional)")
+        describeUsage("youtube SEARCH_QUERY(optional)");
+        describeUsage("yt SEARCH_QUERY(optional)");
     }
     else {
         let search = args.join(" ");
@@ -276,7 +302,41 @@ function youtube(args=[]){
     }
 }
 
-
+function twitch(args=[]){
+    if (args.length == 0){
+        window.location.href ='https://www.twitch.tv/';
+    }
+    else if (args.includes("--help")){
+        describeUsage("twitch");
+        describeUsage("ttv");
+        describeUsage("twitch search SEARCH_QUERY");
+        describeUsage("ttv s SEARCH_QUERY");
+        describeUsage("twitch channel CHANNEL");
+        describeUsage("ttv c CHANNEL");
+        describeUsage("twitch directory DIRECTORY");
+        describeUsage("ttv d DIRECTORY");
+    }
+    else {
+        let sub_command = args[0];
+        let search = args.splice(1).join(" ");
+        console.log(search)
+        switch(sub_command){
+            case "c":
+            case "channel":
+                window.location.href = "https://www.twitch.tv/" + search;
+                break
+            case "s":
+            case "search":
+                window.location.href = "https://www.twitch.tv/search?term=" + search;
+                break
+            case "d":
+            case "directory":
+                window.location.href = "https://www.twitch.tv/directory/game/" + search;
+                break
+        }
+        
+    }  
+}
 
 // Lists of Commands
 
@@ -294,6 +354,11 @@ let argumentative_commands = {
     "create":{
         "command":"create",
         "message": "Create new command",
+    },
+    "remove":{
+        "command":"remove",
+        "message": "Remove a created command.",
+        "shortened": "rm",
     },
     "background":{
         "command":"background",
@@ -337,6 +402,11 @@ let argumentative_commands = {
         "command":"youtube",
         "message":"Go to and Search Youtube",
         "shortened": "yt",
+    },
+    "twitch":{
+        "command":"twitch",
+        "message":"Go to and Search Twitch",
+        "shortened": "ttv",
     },
 }
 
