@@ -20,7 +20,7 @@ function exportUserLine(){
     current_input_line.removeChild(current_input_line.getElementsByClassName("text_input")[0]);
     
     let uValue = document.createElement("p");
-    uValue.innerHTML = input.value.split(" ")[0].replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    uValue.innerHTML = input.value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
     current_input_line.appendChild(uValue);
 
     document.getElementById("output").append(current_input_line);

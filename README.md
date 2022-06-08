@@ -44,7 +44,10 @@ If you'd like to learn more about the individual commands, please [click here](c
 
 * Make ability to change the username
 * Make ability to change the background (WITH COLORS)
+
+<!-- COMMAND USAGE: style [BACKGROUND] [COLOR 1] [COLOR 2] [COLOR 3]-->
 * Make ability to change the font (probably limit to google fonts)
+<!-- COMMAND USAGE: font [GOOGLE FONT NAME] -->
 
 ---
 
