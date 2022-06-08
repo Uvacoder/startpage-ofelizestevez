@@ -43,6 +43,20 @@ function describeUsage(commandUsage){
     output.append(create_help);
 }
 
+function link_handler(link){
+    link = link.includes("https://") || link.includes("http://") ? link : "https://" + link;
+    link = link.includes('.') ? link : link + ".com";
+
+    if (link.includes("https://")){
+        link = link.includes("www.") ? link : link.slice(0,link.lastIndexOf("https://") + 8) + "www." + link.slice(link.lastIndexOf("https://") + 8);
+    }
+    else {
+        link = link.includes("www.") ? link : link.slice(0,link.lastIndexOf("http://") + 7) + "www." + link.slice(link.lastIndexOf("http://") + 7);
+    }
+
+    return link
+}
+
 function link_opener(link){
     window.location.href = link;
 }
@@ -140,7 +154,7 @@ function create(args = []){
                     }
                     else {
                         let name = args[1];
-                        let link = args[2];
+                        let link = link_handler(args[2]);
                         let short = args[3];
 
                         let data = {
@@ -236,9 +250,7 @@ function browse(args=[]){
     }
 
     else{
-        let link = args[0].includes("https://") || args[0].includes("http://") ? args[0] : "https://" + args[0];
-        link = link.includes('.') ? link : link + ".com";
-        link = link.includes("www.") ? link : link.slice(0,link.lastIndexOf("https://") + 8) + "www." + link.slice(link.lastIndexOf("https://") + 8);
+        link = link_handler(args[0])
         window.location.href = link;
     }
 }
