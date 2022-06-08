@@ -13,6 +13,10 @@ fileUpload.type = "file"
 
 input.focus();
 
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  }
+
 function exportUserLine(){
     let current_input_line = input_line.cloneNode();
     current_input_line.removeAttribute("onClick");
@@ -20,7 +24,7 @@ function exportUserLine(){
     current_input_line.removeChild(current_input_line.getElementsByClassName("text_input")[0]);
     
     let uValue = document.createElement("p");
-    uValue.innerHTML = input.value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    uValue.innerHTML = escapeRegExp(input.value);
     current_input_line.appendChild(uValue);
 
     document.getElementById("output").append(current_input_line);
@@ -131,7 +135,7 @@ input.addEventListener("keyup", function(event) {
                 }
                 if(Math.min(...suggestion_result) < 9999){
                     suggestion = subreddits[parseInt(suggestion_result.indexOf(Math.min(...suggestion_result)))]
-                    let uStr = input.value.split(" ")[0].replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+                    let uStr = escapeRegExp(input.value.split(" ")[0]);
                     autocomplete.innerHTML= (uStr) + " " +suggestion
                 }
             }
