@@ -5,20 +5,20 @@
 
 | Command | Description |
 | ----------- | ----------- |
-[help](#"help"-command)|Using this command will print out a tip for terminal or command ('--help')
-[clear]()|Clear terminal
-[create]()|Create new command
-[remove]() (rm)|Remove a created command.
-[background]() (bg)|Change Background
-[backup]()|Download a backup of commands created with the 'create' command
+[help](#help-command)|Using this command will print out a tip for terminal or command ('--help')
+[clear](#clear-command)|Clear terminal
+[create](#create-command)|Create new command
+[remove](#remove-command) (rm)|Remove a created command.
+[background](#background-command) (bg)|Change Background
+[backup](#backup-command)|Download a backup of commands created with the 'create' command
 restore|Use a previously downloaded command backup to restore your previously made commands
-[browse]() (b)|Change Background
-[google]() (g)|Google search a query
-[gmail]() (gm)|Go to Gmail
-[drive]() (gd)|Go to Google Drive
-[reddit]() (r)|Go to Reddit or a particular Subreddit
-[youtube]() (yt)|Go to and Search Youtube
-[twitch]() (ttv)|Go to and Search Twitch
+[browse](#browse-command) (b)|Change Background
+[google](#google-command) (g)|Google search a query
+[gmail](#gmail-command) (gm)|Go to Gmail
+[drive](#drive-command) (gd)|Go to Google Drive
+[reddit](#reddit-command) (r)|Go to Reddit or a particular Subreddit
+[youtube](#youtube-command) (yt)|Go to and Search Youtube
+[twitch](#twitch-command) (ttv)|Go to and Search Twitch
 
 ## Individual Commands
 
