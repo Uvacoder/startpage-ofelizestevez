@@ -239,7 +239,7 @@ function browse(args=[]){
         let link = args[0].includes("https://") || args[0].includes("http://") ? args[0] : "https://" + args[0];
         link = link.includes('.') ? link : link + ".com";
         link = link.includes("www.") ? link : link.slice(0,link.lastIndexOf("https://") + 8) + "www." + link.slice(link.lastIndexOf("https://") + 8);
-        // window.location.href = "https://www." + link;
+        window.location.href = link;
     }
 }
 

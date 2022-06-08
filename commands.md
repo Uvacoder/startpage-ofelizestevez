@@ -1,6 +1,6 @@
 # Commands
 
-[Click Here to go back to main](/)
+[Click Here to go back to main](https://github.com/ofelizestevez/ofelizestevez.github.io/)
 ## Command Table
 
 | Command | Description |
@@ -22,8 +22,6 @@ restore|Use a previously downloaded command backup to restore your previously ma
 
 ## Individual Commands
 
----
-
 ### "help" Command
 Help is the most important for people that are not acclimated to the command system. This has 2 different usages.
 
@@ -34,7 +32,6 @@ Help is the most important for people that are not acclimated to the command sys
 
 2. inputting "--help" as a command argument
 
-    <!-- ADD LITTLE TERMINAL BOX -->
     This command prints the usage/command example for the specific command. For example "gmail --help".
     <!-- ADD GIF OF SUB-COMMAND --help -->
 
@@ -75,13 +72,22 @@ remove [COMMAND NAME]
 
 This command changes the theme of the terminal by changing the background and the command prefix colors. There's currently no way to change or add any backgrounds or your own prefix colors. If you'd like this feature to be added, let me know!
 
+```
+background 0
+```
+```
+bg 1
+```
+
 ---
 
 ### "backup" command
 
 "backup" is another simple command with no arguments which downloads a .json of your commands created with the "create" command. This is useful for transffering your commands between devices and restoring them in case they get deleted.
 
-<!-- GIF EXAMPLE HERE -->
+```
+backup
+```
 
 ---
 
@@ -96,7 +102,13 @@ This command changes the theme of the terminal by changing the background and th
 ### "browse" command
 The browse command takes 1 argument, which is supposed to be a link. The current limitation is that if you want to go to a page's subdirectory, you need to include the ending (ie. ".com" or ".edu")
 
-<!-- EXAMPLE HERE -->
+```
+browser twitch.tv
+```
+```
+```
+```
+```
 
 ---
 

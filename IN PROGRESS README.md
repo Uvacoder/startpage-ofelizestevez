@@ -2,6 +2,10 @@
 # Just Another Terminal
 
 <!-- ADD TABLE OF CONTENTS -->
+1. [Overview + Notes](#overview--notes)
+1. [Overview + Notes](#usage)
+1. [Overview + Notes](#commands)
+1. [Overview + Notes](#support-and-limitations)
 
 ## Overview + Notes
 I'm naming this website Just Another Terminal (JUT) since this ideas is not original (actually inspired by others in [r/startpages](https://www.reddit.com/r/startpages/)). I started this project just as a personal start page but decided to share it with others since it has dynamic elements to it, such as a theme changer and the ability to create new commands/bookmarks.
@@ -25,6 +29,8 @@ Either way, you're going to want to change your browser's startup and/or homepag
 This startpage uses commands of different functionality to work. Some commands are simple link redirectors which redirect to differnet websites, others are more complex.
 
 If you'd like to learn more about the individual commands, please [click here](commands.md)
+
+---
 
 ## Support and Limitations
 If you have any suggestions, whether different themes or how to optimize the code or any custom commands I should create, please contact me or create an issue on the repo.
