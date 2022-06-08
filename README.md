@@ -5,11 +5,11 @@
 1. [Overview + Notes](#overview--notes)
 1. [Usage](#usage)
 1. [Commands](#commands)
+1. [Future Ideas](#future-ideas)
 1. [Support and Limitations](#support-and-limitations)
-
 ## Overview + Notes
 
-<!-- ADD EXAMPLE IMAGE -->
+![Screenshot of the website.](/screenshot.png?raw=true "Screenshot of the website.")
 
 I'm naming this website Just Another Terminal (JUT) since this ideas is not original (actually inspired by others in [r/startpages](https://www.reddit.com/r/startpages/)). I started this project just as a personal start page but decided to share it with others since it has dynamic elements to it, such as a theme changer and the ability to create new commands/bookmarks.
 
@@ -34,6 +34,14 @@ This startpage uses commands of different functionality to work. Some commands a
 Commands may be used through their general names or a shortened version of their names.
 
 If you'd like to learn more about the individual commands, please [click here](commands.md)
+
+---
+
+## Future Ideas
+
+* Make ability to change the username
+* Make ability to change the background (WITH COLORS)
+* Make ability to change the font (probably limit to google fonts)
 
 ---
 
