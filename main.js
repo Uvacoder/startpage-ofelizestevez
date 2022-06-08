@@ -7,6 +7,7 @@ let subreddits = ["2meirl4meirl","abandonedporn","abruptchaos","actualpublicfrea
 let autocomplete = document.getElementById("autocomplete");
 let suggestion;
 
+// GIVE FILE UPLOAD AN ID
 let fileUpload = document.createElement("input")
 fileUpload.type = "file"
 
@@ -47,6 +48,7 @@ function textTerminalRespond(message){
     output.append(p)
 }
 
+// REMOVE IT AFTER!!!
 fileUpload.addEventListener("change", async function(event){
     console.log("IT HAS STARTED")
     if (fileUpload.files[0]){
