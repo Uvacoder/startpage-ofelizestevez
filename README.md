@@ -7,6 +7,7 @@
 1. [Commands](#commands)
 1. [Future Ideas](#future-ideas)
 1. [Support and Limitations](#support-and-limitations)
+
 ## Overview + Notes
 
 ![Screenshot of the website.](/screenshot.png?raw=true "Screenshot of the website.")

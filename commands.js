@@ -81,11 +81,16 @@ function restore(){
 function update_pre_determined_commands(){
     for(let i = 0; i < localStorage.length; i++){
         let key = localStorage.key(i)
-        let data = JSON.parse(localStorage[key])
-        pre_determined_commands[key] = data
-        all_commands_simplified = Object.assign({}, argumentative_commands, pre_determined_commands)
-        update_shortened_commands()
-        all_commands = Object.assign({}, all_commands_simplified, shortened_commands)
+        try {
+            let data = JSON.parse(localStorage[key])
+            pre_determined_commands[key] = data
+            all_commands_simplified = Object.assign({}, argumentative_commands, pre_determined_commands)
+            update_shortened_commands()
+            all_commands = Object.assign({}, all_commands_simplified, shortened_commands)
+        }
+        catch (SyntaxError){
+        }
+
     }
 }
 

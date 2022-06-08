@@ -20,7 +20,7 @@ function exportUserLine(){
     current_input_line.removeChild(current_input_line.getElementsByClassName("text_input")[0]);
     
     let uValue = document.createElement("p");
-    uValue.innerHTML = input.value;
+    uValue.innerHTML = document.createTextNode(input.value);
     current_input_line.appendChild(uValue);
 
     document.getElementById("output").append(current_input_line);
@@ -131,7 +131,7 @@ input.addEventListener("keyup", function(event) {
                 }
                 if(Math.min(...suggestion_result) < 9999){
                     suggestion = subreddits[parseInt(suggestion_result.indexOf(Math.min(...suggestion_result)))]
-                    autocomplete.innerHTML= input.value.split(" ")[0] + " " +suggestion
+                    autocomplete.innerHTML= document.createTextNode(input.value.split(" ")[0]) + " " +suggestion
                 }
             }
         }
