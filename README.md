@@ -27,6 +27,8 @@ The address for the version hosted on github is: https://ofelizestevez.github.io
 
 Either way, you're going to want to change your browser's startup and/or homepage to the address either through an extension or your browser's settings.
 
+You can go to [r/startpages' wiki](https://www.reddit.com/r/startpages/wiki/index#wiki_implementation) to learn how to set your startpage.
+
 ---
 
 ## Commands
