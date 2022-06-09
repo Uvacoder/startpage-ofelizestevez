@@ -42,6 +42,7 @@ If you'd like to learn more about the individual commands, please [click here](c
 
 ## Future Ideas
 
+* add the ability to go up
 * Make ability to change the username
 * Make ability to change the background (WITH COLORS)
 

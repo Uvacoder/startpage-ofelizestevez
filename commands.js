@@ -1,6 +1,6 @@
 let db_commands;
 
-// Helpers
+// Sets a HTML cookie.
 function setCookie(cname,cvalue,exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -8,6 +8,7 @@ function setCookie(cname,cvalue,exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+// async function which turns a file into a JSON. It's async cause it uses filereader. it returns a promise cause I wanted to use await.
 async function fileToJSON(file) {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader()
@@ -17,19 +18,24 @@ async function fileToJSON(file) {
     })
 }
 
+// Helper for "restore" command
 async function restoreJSON(file){
+    // awaits return from fileToJSON(), then it restores overrides localStorage
     let x = await fileToJSON(file)
     for(const [key, val] of Object.entries(x)){
         localStorage.setItem(key, val)
     }
+    // updates pre_determined_commands, we might need to update more things as we're going to add more functionality with LocalStorage
     update_pre_determined_commands()
 }
 
+// Helper for incomplete commands, to help me know where i am at. Probably not needed anymore but I'll keep it just incase.
 function commandStatus(name, status){
     console.log("Command: " + name)
     console.log("Status: " + status)
 }
 
+// Helper to print out command usages.
 function describeUsage(commandUsage){
     let create_help = document.createElement("div");
     create_help.className = "flex";
@@ -43,6 +49,7 @@ function describeUsage(commandUsage){
     output.append(create_help);
 }
 
+// helper to handle improper links and return a proper link. It's probably a terrible algorithm but... if it works...
 function link_handler(link){
     link = link.includes("https://") || link.includes("http://") ? link : "https://" + link;
     link = link.includes('.') ? link : link + ".com";
@@ -57,10 +64,12 @@ function link_handler(link){
     return link
 }
 
+// helper function to open a link. used for the user-generated commands.
 function link_opener(link){
     window.location.href = link;
 }
 
+// creates a backup of localstorage by by encoding localstorage in stringify. then it auto downloads.
 function backup(){
     const anchor = document.createElement("a");
     anchor.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(localStorage)));
@@ -74,16 +83,22 @@ function backup(){
     document.body.removeChild(anchor);
 }
 
+// just outputs fileUpload, a file input, which it's all it needs.
 function restore(){
     output.appendChild(fileUpload)
 }
 
+// updates user-generated commands.
 function update_pre_determined_commands(){
     for(let i = 0; i < localStorage.length; i++){
+        // tries to parse the localstorage[key] result as a JSON. If it doesn't work, then ignore it.
         let key = localStorage.key(i)
         try {
             let data = JSON.parse(localStorage[key])
+            // data is something like this {command: ""; arg: ""; message: "";} which is how individual commands are structure.
             pre_determined_commands[key] = data
+
+            // updates all dictionaries of commands.
             all_commands_simplified = Object.assign({}, argumentative_commands, pre_determined_commands)
             update_shortened_commands()
             all_commands = Object.assign({}, all_commands_simplified, shortened_commands)
@@ -94,16 +109,17 @@ function update_pre_determined_commands(){
     }
 }
 
+// function to update shortened_commands list and the main command list
 function update_shortened_commands(){
     for (command in all_commands_simplified){
-        // "shortened" in all_commands_simplified[command]
+        // if the command has a "shortened" key
         if(all_commands_simplified[command].hasOwnProperty("shortened")){
-            
+            // take the name of the shortened command name to append to shortened commands list.
             let shortened_command = all_commands_simplified[command]["shortened"]
+            // if the command has a "arg" key then set command with arg, otherwise just add the command and message. There's probably a way to do this with less lines, but for now we're chilling.
             if ("arg" in all_commands_simplified[command]){
                 shortened_commands[shortened_command] = {
                     "command": all_commands_simplified[command]["command"],
-                    
                     "arg":all_commands_simplified[command]["arg"],
                     "message": all_commands_simplified[command]["message"],
                 }
@@ -117,10 +133,13 @@ function update_shortened_commands(){
 
         }
     }
+    // updates main command list with the shortened command list
     all_commands = Object.assign({}, all_commands_simplified, shortened_commands)
 }
 
 // Command Functions
+
+// help command that prints out a table of commands and their descriptions
 function help(){
     let help_table = document.createElement("table");
 
@@ -145,7 +164,9 @@ function help(){
     }
 }
 
+// create command
 function create(args = []){
+    // currently supported create templates are link only... but i figured I'd future proof it
     const types = ["link"];
     if (args.includes("--help") || args.length == 0){
         describeUsage("create TYPE NAME LINK SHORTNAME(optional)");
@@ -154,20 +175,22 @@ function create(args = []){
         if(types.includes(args[0])){
             switch(args[0]){
                 case "link":
-                    if(!args[0],!args[1],!args[2]){
+                    if(!args[1],!args[2]){
                         describeUsage("create link NAME LINK SHORTNAME(optional)");
                     }
                     else {
+                        // sets command data 
                         let name = args[1];
                         let link = link_handler(args[2]);
                         let short = args[3];
-
                         let data = {
-                            command: "link_opener",
-                            arg: link,
+                            "command": "link_opener",
+                            "arg": link,
                             "message": "Go to " + name,
-                            shortened: short,
-                        }
+                            "shortened": short,
+                        };
+
+                        // sets the command to localstorage, then makes it read it
                         localStorage.setItem(name, JSON.stringify(data));
                         update_pre_determined_commands()
                     }
@@ -185,6 +208,7 @@ function create(args = []){
     }
 }
 
+// remove command
 function remove(args = []){
     if (args.includes("--help") || args.length == 0){
         describeUsage("remove COMMAND_NAME");
@@ -192,17 +216,19 @@ function remove(args = []){
         textTerminalRespond("Make sure to only use the main command name and not the shortened name.")
     }
     else{
+        // takes the name of the command user wants to delete, then it checks if it exists in dictionary. If it does, then delete it
         let desire_rm = args[0];
         if(pre_determined_commands.hasOwnProperty(desire_rm)){
             popped_command = pre_determined_commands[desire_rm];
             delete pre_determined_commands[desire_rm];
-            console.log(popped_command["shortened"])
             localStorage.removeItem(desire_rm);
-            delete all_commands[desire_rm]
-            delete all_commands_simplified[desire_rm]
+            delete all_commands[desire_rm];
+            delete all_commands_simplified[desire_rm];
+            // if desired_rm has a shortened name, then delete it as well.
             if(popped_command.hasOwnProperty("shortened")){
-                desire_shortened_rm =  popped_command["shortened"]
-                delete all_commands[desire_shortened_rm]
+                desire_shortened_rm =  popped_command["shortened"];
+                delete all_commands[desire_shortened_rm];
+                delete shortened_commands[desire_shortened_rm];
             }
         }
         else{
@@ -211,10 +237,12 @@ function remove(args = []){
     }
 }
 
+// resets terminal by clearing everything out of the ouput div.
 function clear(){
-    output.innerHTML = ""
+    output.innerHTML = "";
 }
 
+// background command
 function background(args=[]){
     if (args.includes("--help") || args.length == 0){
         describeUsage("background NUM");
@@ -223,8 +251,7 @@ function background(args=[]){
     else{
         let arg = args[0];
         let arg_num = parseInt(args[0]);
-        console.log(args)
-        console.log(arg_num)
+
         // set image
         if(arg >= 0 && arg < color_palettes.length){
             while (arg.length < 2){
@@ -247,7 +274,7 @@ function background(args=[]){
     }
 }
 
-// only add the https://www. if it's missing.
+// browse command, takes link through the link_handler, then goes to the website
 function browse(args=[]){
     if (args.includes("--help") || args.length == 0){
         describeUsage("browse [LINK]");
@@ -260,6 +287,7 @@ function browse(args=[]){
     }
 }
 
+// google command, just does a quick google query. nothing to see here.
 function google(args=[]){
     if (args.includes("--help")){
         describeUsage("google SEARCH_QUERY");
@@ -270,7 +298,7 @@ function google(args=[]){
     }
 }
 
-
+// gmail command, simple enough
 function gmail(args=[]){
     if (args.includes("--help")){
         describeUsage("gmail NUM");
@@ -282,6 +310,7 @@ function gmail(args=[]){
     }
 }
 
+// gdrive command, simple enough as well.
 function drive(args=[]){
     if (args.includes("--help")){
         describeUsage("drive NUM");
@@ -293,6 +322,7 @@ function drive(args=[]){
     }
 }
 
+// reddit command. pretty simple, if no arguments, then just send them to reddit, if not, then send them to a subreddit of arg
 function reddit(args=[]){
     if (args.length == 0){
         window.location.href ='https://www.reddit.com/';
@@ -323,6 +353,7 @@ function youtube(args=[]){
     }
 }
 
+// twitch function. simple enough as well.
 function twitch(args=[]){
     if (args.length == 0){
         window.location.href ='https://www.twitch.tv/';
