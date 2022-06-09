@@ -1,3 +1,6 @@
+if (localStorage.hasOwnProperty("NONCOMMAND_USERNAME")) {
+    username_change(localStorage["NONCOMMAND_USERNAME"])
+  }
 
 // This stuff is used for the main functionality
 let input = document.getElementsByClassName("input")[0];
@@ -33,9 +36,17 @@ function exportUserLine(){
     // copy input line, removes onclick, and remove the text input
     let current_input_line = input_line.cloneNode();
     current_input_line.removeAttribute("onClick");
+    current_input_line.removeAttribute("id");
+    current_input_line.className = "input_line"
     current_input_line.innerHTML = input_line.innerHTML;
     current_input_line.removeChild(current_input_line.getElementsByClassName("text_input")[0]);
     
+    // remove all of the ID information, to avoid common id
+    current_input_line.querySelector("#username").className = "username"
+    current_input_line.querySelector("#username").removeAttribute("id")
+    current_input_line.querySelector("#username_suffix").className = "username_suffix"
+    current_input_line.querySelector("#username_suffix").removeAttribute("id")
+
     // replaces text_input with a paragraph of same value
     let uValue = document.createElement("p");
     uValue.innerHTML = escapeRegExp(input.value);

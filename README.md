@@ -42,13 +42,16 @@ If you'd like to learn more about the individual commands, please [click here](c
 
 ## Future Ideas
 
-* add the ability to go up
-* Make ability to change the username
 * Make ability to change the background (WITH COLORS)
-
 <!-- COMMAND USAGE: style [BACKGROUND] [COLOR 1] [COLOR 2] [COLOR 3]-->
 * Make ability to change the font (probably limit to google fonts)
 <!-- COMMAND USAGE: font [GOOGLE FONT NAME] -->
+<!-- useful links: -->
+<!-- https://github.com/typekit/webfontloader -->
+* Make ability to change subreddit list
+<!-- useful links: -->
+<!-- https://github.com/not-an-aardvark/snoowrap -->
+* Change the way commands handle the help/usage to include the link helpers.
 
 ---
 

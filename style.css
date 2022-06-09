@@ -80,7 +80,7 @@ p{
     -webkit-backdrop-filter: blur(8.7px);
 }
 
-#input_line {
+#input_line, .input_line {
     display: flex;
 }
 
@@ -99,15 +99,15 @@ p{
     display: flex;
 }
 
-#username {
+#username, .username {
     color: var(--primary-color);
 }
 
-#username_suffix {
+#username_suffix, .username_suffix {
     color: var(--secondary-color);
 }
 
-#username, #username_suffix {
+#username, #username_suffix, .username, .username_suffix {
     margin-right: 10px;
 }
 

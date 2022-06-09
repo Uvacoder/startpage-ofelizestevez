@@ -69,6 +69,12 @@ function link_opener(link){
     window.location.href = link;
 }
 
+// helper to set username
+function username_change(username){
+    console.log(username)
+    document.getElementById("username").innerHTML = username
+}
+
 // creates a backup of localstorage by by encoding localstorage in stringify. then it auto downloads.
 function backup(){
     const anchor = document.createElement("a");
@@ -169,14 +175,14 @@ function create(args = []){
     // currently supported create templates are link only... but i figured I'd future proof it
     const types = ["link"];
     if (args.includes("--help") || args.length == 0){
-        describeUsage("create TYPE NAME LINK SHORTNAME(optional)");
+        describeUsage("create [TYPE] [NAME] [LINK] [SHORTNAME](optional)");
     }
     else {
         if(types.includes(args[0])){
             switch(args[0]){
                 case "link":
                     if(!args[1],!args[2]){
-                        describeUsage("create link NAME LINK SHORTNAME(optional)");
+                        describeUsage("create link [NAME] [LINK] [SHORTNAME](optional)");
                     }
                     else {
                         // sets command data 
@@ -211,8 +217,8 @@ function create(args = []){
 // remove command
 function remove(args = []){
     if (args.includes("--help") || args.length == 0){
-        describeUsage("remove COMMAND_NAME");
-        describeUsage("rm COMMAND_NAME")
+        describeUsage("remove [COMMAND_NAME]");
+        describeUsage("rm [COMMAND_NAME]")
         textTerminalRespond("Make sure to only use the main command name and not the shortened name.")
     }
     else{
@@ -242,11 +248,22 @@ function clear(){
     output.innerHTML = "";
 }
 
+function username(args=[]){
+    commandStatus("username","0%")
+    if (args.includes("--help") || args.length == 0){
+        describeUsage("username [USER NAME]");
+        describeUsage("u [USER NAME]")
+    }
+    let username = args[0]
+    localStorage.setItem("NONCOMMAND_USERNAME",username)
+    username_change(username)
+}
+
 // background command
 function background(args=[]){
     if (args.includes("--help") || args.length == 0){
-        describeUsage("background NUM");
-        describeUsage("bg NUM")
+        describeUsage("background [NUM]");
+        describeUsage("bg [NUM]")
     }
     else{
         let arg = args[0];
@@ -290,7 +307,7 @@ function browse(args=[]){
 // google command, just does a quick google query. nothing to see here.
 function google(args=[]){
     if (args.includes("--help")){
-        describeUsage("google SEARCH_QUERY");
+        describeUsage("google [SEARCH_QUERY]");
     }
     else {
         let search = args.join(" ");
@@ -301,8 +318,8 @@ function google(args=[]){
 // gmail command, simple enough
 function gmail(args=[]){
     if (args.includes("--help")){
-        describeUsage("gmail NUM");
-        describeUsage("gm NUM");
+        describeUsage("gmail [NUM]");
+        describeUsage("gm [NUM]");
     }
     else{
         let arg_num = args[0];
@@ -313,8 +330,8 @@ function gmail(args=[]){
 // gdrive command, simple enough as well.
 function drive(args=[]){
     if (args.includes("--help")){
-        describeUsage("drive NUM");
-        describeUsage("gd NUM");
+        describeUsage("drive [NUM]");
+        describeUsage("gd [NUM]");
     }
     else{
         let arg_num = args[0];
@@ -328,8 +345,8 @@ function reddit(args=[]){
         window.location.href ='https://www.reddit.com/';
     }
     else if (args.includes("--help")){
-        describeUsage("reddit SUBREDDIT(optional)");
-        describeUsage("r SUBREDDIT(optional)");
+        describeUsage("reddit [SUBREDDIT](optional)");
+        describeUsage("r [SUBREDDIT](optional)");
     }
     else {
         let search = args.join(" ");
@@ -343,8 +360,8 @@ function youtube(args=[]){
         window.location.href ='https://www.youtube.com/';
     }
     else if (args.includes("--help")){
-        describeUsage("youtube SEARCH_QUERY(optional)");
-        describeUsage("yt SEARCH_QUERY(optional)");
+        describeUsage("youtube [SEARCH_QUERY](optional)");
+        describeUsage("yt [SEARCH_QUERY](optional)");
     }
     else {
         let search = args.join(" ");
@@ -361,12 +378,12 @@ function twitch(args=[]){
     else if (args.includes("--help")){
         describeUsage("twitch");
         describeUsage("ttv");
-        describeUsage("twitch search SEARCH_QUERY");
-        describeUsage("ttv s SEARCH_QUERY");
-        describeUsage("twitch channel CHANNEL");
-        describeUsage("ttv c CHANNEL");
-        describeUsage("twitch directory DIRECTORY");
-        describeUsage("ttv d DIRECTORY");
+        describeUsage("twitch search [SEARCH_QUERY]");
+        describeUsage("ttv s [SEARCH_QUERY]");
+        describeUsage("twitch channel [CHANNEL]");
+        describeUsage("ttv c [CHANNEL]");
+        describeUsage("twitch directory [DIRECTORY]");
+        describeUsage("ttv d [DIRECTORY]");
     }
     else {
         let sub_command = args[0];
@@ -409,7 +426,7 @@ let argumentative_commands = {
     },
     "remove":{
         "command":"remove",
-        "message": "Remove a created command.",
+        "message": "Remove a created command",
         "shortened": "rm",
     },
     "background":{
@@ -424,6 +441,11 @@ let argumentative_commands = {
     "restore":{
         "command":"restore",
         "message": "Use a previously downloaded command backup to restore your previously made commands",
+    },
+    "username":{
+        "command":"username",
+        "message": "Change the username",
+        "shortened": "u",
     },
     "browse":{
         "command":"browse",
@@ -471,7 +493,6 @@ let all_commands_simplified = Object.assign({}, argumentative_commands, pre_dete
 let shortened_commands = {}
 
 let all_commands = Object.assign({}, all_commands_simplified, shortened_commands) // will be expanded in the future
-
 
 // POST
 update_pre_determined_commands()
