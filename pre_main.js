@@ -54,3 +54,23 @@ if (user_primary_color != ""){
   set_style("tertiary-color",user_tertiary_color)
 }
 
+let user_font = getCookie("USER-FONT");
+if (user_font != ""){
+  let styles = "@import url('" + user_font + "');"
+  let firstIndexOfFamily = user_font.indexOf("family=") + 7;
+  let lastIndexOfFamily = user_font.indexOf("&");
+
+  let fontFamily = user_font.slice(firstIndexOfFamily, lastIndexOfFamily)
+
+  let styleSheet = document.createElement("style");
+  styleSheet.innerText = styles;
+  document.head.appendChild(styleSheet); // THIS LINE RIGHT HERE OFFICER
+  set_style("font-family","'"+ fontFamily +"', sans-serif")
+  setCookie("USER_FONT",user_font)
+}
+
+let user_font_size = getCookie("USER-FONT-SIZE")
+if (user_font_size != ""){
+  let user_size_rem = user_font_size / 16
+  set_style("font-size", user_size_rem+"rem")
+}

@@ -148,7 +148,7 @@ function background(args = []) {
 
 }
 
-function style_colors (args = []){
+function style_colors(args = []) {
     let colors = args
     let invalid_color = false
 
@@ -176,7 +176,7 @@ function style_colors (args = []){
     }
 }
 
-async function style_bg_url( args = []){
+async function style_bg_url(args = []) {
     let bg = args[0]
     if (await checkBgURL(bg)) {
         setCookie("USER_BG", bg);
@@ -187,7 +187,7 @@ async function style_bg_url( args = []){
     }
 }
 
-function style_opacity(args = []){
+function style_opacity(args = []) {
     let user_opacity = args[0];
     if (user_opacity >= 0.0 && user_opacity <= 1.0) {
         setCookie("USER_OPACITY", user_opacity);
@@ -358,8 +358,10 @@ function username(args = []) {
         describeUsage("u [USER NAME]")
     }
     let username = args[0]
-    localStorage.setItem("NONCOMMAND_USERNAME", username)
-    username_change(username)
+    if (username != undefined){
+        localStorage.setItem("NONCOMMAND_USERNAME", username);
+        username_change(username);
+    }
 }
 
 /*
@@ -373,7 +375,7 @@ function style(args = []) {
         describeUsage("style set t [INT]");
         describeUsage("style set colors [HEX COLOR 1] [HEX COLOR 2](OPTIONAL) [HEX COLOR 3](OPTIONAL)");
         describeUsage("style set c [HEX COLOR 1] [HEX COLOR 2](OPTIONAL) [HEX COLOR 3](OPTIONAL)");
-        describeUsage("style set background [BG_URL]");        
+        describeUsage("style set background [BG_URL]");
         describeUsage("style set bg [BG_URL]");
         describeUsage("style set opacity [NUM FROM 0.0 TO 1.0]");
         describeUsage("style set o [NUM FROM 0.0 TO 1.0]");
@@ -438,13 +440,11 @@ function style(args = []) {
 
                     let default_bg = parseInt(get_style("background-image").slice(17, 19))
                     if (default_bg != NaN) {
-                        console.log("1")
                         set_style("primary-color", "#" + color_palettes[default_bg][0]);
                         set_style("secondary-color", "#" + color_palettes[default_bg][1]);
                         set_style("tertiary-color", "#" + color_palettes[default_bg][2]);
                     }
                     else {
-                        console.log("2")
                         set_style("primary-color", "#" + color_palettes[1][0]);
                         set_style("secondary-color", "#" + color_palettes[1][1]);
                         set_style("tertiary-color", "#" + color_palettes[1][2]);
@@ -478,6 +478,85 @@ function style(args = []) {
 
 }
 
+// USAGE font face [URL]
+// usage font size pz (will be interpreted as rem)
+function font(args = []) {
+    if (args.includes("--help") || args.length == 0) {
+        describeUsage("font set face [URL]");
+        describeUsage("font set size [PX SIZE]");
+        describeUsage("font unset face");
+        describeUsage("font unset size");
+        textTerminalRespond("NOTE: for the 'font set face [URL]', any google font will work. Make sure to use the @import url, and not the browser url.");
+        textTerminalRespond("NOTE: for the 'font set size [PX SIZE]', make sure to a reasonable size, around 10-30px. Anything above may be too unworkable to revert.");
+        return
+    }
+    let main_arg = args[0]
+    let secondary_arg = args[1]
+    let tertiary_arg = args[2]
+
+    switch (main_arg) {
+        case "set":
+            if (secondary_arg == undefined) { textTerminalRespond("The second argument is missing."); return; }
+            if (tertiary_arg == undefined) { textTerminalRespond("The second argument is missing."); return; }
+
+            switch (secondary_arg) {
+                case "face":
+                    let styles = "@import url('" + tertiary_arg + "');"
+                    
+                    let firstIndexOfFamily = tertiary_arg.indexOf("family=") + 7;
+                    let lastIndexOfFamily = tertiary_arg.indexOf("&");
+
+                    let fontFamily = tertiary_arg.slice(firstIndexOfFamily, lastIndexOfFamily)
+
+                    let styleSheet = document.createElement("style");
+                    styleSheet.innerText = styles;
+                    document.head.appendChild(styleSheet); // THIS LINE RIGHT HERE OFFICER
+                    set_style("font-family","'"+ fontFamily +"', sans-serif");
+                    setCookie("USER-FONT", tertiary_arg)
+                    break
+                case "size":
+                    let user_size = parseInt(tertiary_arg)
+                    if (!(user_size == NaN)){
+                        let user_size_rem = user_size / 16
+                        set_style("font-size", user_size_rem+"rem")
+                        setCookie("USER-FONT-SIZE", user_size)
+                    }
+                    else {
+                        textTerminalRespond("invalid tertiary argument.")
+                    }
+                    break
+                default:
+                    textTerminalRespond("The secondary argument isn't supported.");
+                    break
+            }
+            break
+
+        case "unset":
+            if (secondary_arg == undefined) { textTerminalRespond("The second argument is missing."); return; }
+            switch (secondary_arg){
+                case "face":
+                    set_style("font-family","'"+ 'Poppins' +"', sans-serif")
+                    deleteCookie("USER-FONT")
+                    break
+
+                case "size":
+                    break
+
+                default:
+                    textTerminalRespond("The secondary argument isn't supported.");
+                    break
+
+            }
+
+            break
+
+        default:
+            textTerminalRespond("The first argument isn't supported.");
+            textTerminalRespond("Current supported arguments include: 'set' and 'unset'");
+            break
+    }
+
+}
 
 // browse command, takes link through the link_handler, then goes to the website
 function browse(args = []) {
@@ -619,6 +698,10 @@ let argumentative_commands = {
     "style": {
         "command": "style",
         "message": "Change the style of your terminal (including the background image)",
+    },
+    "font": {
+        "command": "font",
+        "message": "Change the font of the terminal, this changes both the font face and font size",
     },
     "backup": {
         "command": "backup",

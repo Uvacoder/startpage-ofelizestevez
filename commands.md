@@ -11,8 +11,8 @@
 [clear](#clear-command)|Clear terminal
 [create](#create-command)|Create new command
 [remove](#remove-command) (rm)|Remove a created command.
-[background](#background-command) (bg)|Change Background
-[style](#style-command) (bg)|Change Background
+[style](#style-command)|Change the style of your terminal (including the background image)
+[font](#font-command)|Change the font of the terminal, this has the ability to change both the font face and font size
 [backup](#backup-command)|Download a backup of commands created with the 'create' command
 restore|Use a previously downloaded command backup to restore your previously made commands
 [browse](#browse-command) (b)|Change Background
@@ -131,6 +131,7 @@ In the future, I plan to add the following features:
 
 This command works on style types. The current style types supported are: template (t), colors (c), background (bg), and opacity (o)
 
+#### Usage
 ```
 style [set OR unset] [STYLE TYPE]
 ```
@@ -162,23 +163,62 @@ style set o [NUM FROM 0.0 TO 1.0]
 style unset [STYLE]
 ```
 
+#### Examples
 
-<!-- #### Usage
 ```
-background [NUM]
-```
-```
-bg [NUM]
+style set template 1
 ```
 
+```
+style set c #000
+```
+```
+style set background https://images.unsplash.com/photo-1654481862986-b7329dbdbbf7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80
+```
+```
+style set o 0.6
+```
+```
+style unset template
+```
 
-#### Example
+---
+### "font" command
+[go back to the command table](#command-table)
+
+The font command is similar to the style command, where it gives you customizablity over the terminal. In this instance, you as the user can change the font size and font face of the terminal. 
+
+NOTES: For the "font size", make sure to keep your size at a reasonable range (10-30), as making it too big might create a hard to reverse situation. Font the "font family", currently, the terminal only supports Google Fonts, but I'm sure I'll add support to others afterwards. To get the appropriate google font URL, make sure to select the style and use the url for css @import.
+
+
+#### Usage
 ```
-background 0
+font set face [URL]
 ```
 ```
-bg 1
-``` -->
+font set size [PX SIZE]
+```
+```
+font unset face
+```
+```
+font unset size
+```
+
+#### Examples
+```
+font set face https://fonts.googleapis.com/css2?family=Pacifico&display=swap
+```
+```
+font set size 16
+```
+```
+font unset face
+```
+```
+font unset size
+```
+
 
 ---
 

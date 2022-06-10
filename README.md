@@ -47,12 +47,11 @@ If you'd like to learn more about the individual commands, please [click here](c
 
 ---
 
+<!-- CREATE FEATURE LIST HERE -->
+
+
 ## Future Ideas
 
-* Make ability to change the font (probably limit to google fonts)
-<!-- COMMAND USAGE: font [GOOGLE FONT NAME] -->
-<!-- useful links: -->
-<!-- https://github.com/typekit/webfontloader -->
 * Make ability to change subreddit list
 <!-- useful links: -->
 <!-- https://github.com/not-an-aardvark/snoowrap -->
