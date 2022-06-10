@@ -31,6 +31,13 @@ You can go to [r/startpages' wiki](https://www.reddit.com/r/startpages/wiki/inde
 
 ---
 
+## Personalizing
+
+Hate the default apperance of the terminal? Well there's a fairly robust ["style" command](commands.md#style-command) which lets you change the background image and color scheme of the terminal. 
+
+In the future, you will also be able to change the font, change the font color, change the terminal background color, and lastly change the terminal size.
+
+---
 ## Commands
 This startpage uses commands of different functionality to work. Some commands are simple link redirectors which redirect to differnet websites, others are more complex.
 
