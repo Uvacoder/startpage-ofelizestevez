@@ -10,7 +10,8 @@
     --font-family: 'Poppins', sans-serif;
     --font-size: 1rem;
 
-    --bg-color: rgba(26,26,26,0.8);
+    --terminal-opacity: 0.8;
+    --bg-color: rgba(26,26,26,var(--terminal-opacity));
     --fg-color: #fafafa;
     --primary-color:#6960D6;
     --secondary-color:#4D299D;
@@ -35,6 +36,7 @@ body {
     background-image: var(--background-image);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 .flex {
@@ -44,6 +46,8 @@ body {
 p{
     margin-top: 8px;
     margin-bottom: 8px;
+    max-width: 90%;
+    overflow-wrap: break-word;
 }
 
 .accent_text {

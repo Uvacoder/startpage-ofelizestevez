@@ -49,7 +49,7 @@ function exportUserLine(){
 
     // replaces text_input with a paragraph of same value
     let uValue = document.createElement("p");
-    uValue.innerHTML = escapeRegExp(input.value);
+    uValue.innerHTML = input.value;
     current_input_line.appendChild(uValue);
 
     // append to terminal

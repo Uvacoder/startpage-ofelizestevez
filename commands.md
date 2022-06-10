@@ -1,3 +1,5 @@
+<!-- TODO: ADD STYLE COMMAND -->
+
 # Commands
 
 [Click Here to go back to main](https://github.com/ofelizestevez/ofelizestevez.github.io/)
@@ -10,6 +12,7 @@
 [create](#create-command)|Create new command
 [remove](#remove-command) (rm)|Remove a created command.
 [background](#background-command) (bg)|Change Background
+[style](#style-command) (bg)|Change Background
 [backup](#backup-command)|Download a backup of commands created with the 'create' command
 restore|Use a previously downloaded command backup to restore your previously made commands
 [browse](#browse-command) (b)|Change Background
@@ -111,17 +114,56 @@ remove [COMMAND NAME]
 remove github
 ```
 
-
 ---
 
-### "background" command
+### "style" command
 [go back to the command table](#command-table)
 
-This command changes the theme of the terminal by changing the background and the command prefix colors. There's currently no way to change or add any backgrounds or your own prefix colors. If you'd like this feature to be added, let me know!
+The "style" command is a great way to make this terminal website you own (atleast visually). The current features of this command include:
 
-There are currently 5 default backgrounds.
+* change the terminal theme depending on 5 default [0-4], which changes the background and the prefix colors.
+* change the colors of the prefix individually (3 colors in total, although)
+* change the background to a background of your choosing (as long as it's a URL and not a local file)
+* change the opacity of the terminal window
 
-#### Usage
+In the future, I plan to add the following features:
+* change the terminal background color
+
+This command works on style types. The current style types supported are: template (t), colors (c), background (bg), and opacity (o)
+
+```
+style [set OR unset] [STYLE TYPE]
+```
+```
+style set template [INT]
+```
+```
+style set t [INT]
+```
+```
+style set colors [HEX COLOR 1] [HEX COLOR 2](OPTIONAL) [HEX COLOR 3](OPTIONAL)
+```
+```
+style set c [HEX COLOR 1] [HEX COLOR 2](OPTIONAL) [HEX COLOR 3](OPTIONAL)
+```
+```
+style set background [BG_URL]
+```
+```
+style set bg [BG_URL]
+```
+```
+style set opacity [NUM FROM 0.0 TO 1.0]
+```
+```
+style set o [NUM FROM 0.0 TO 1.0]
+```
+```
+style unset [STYLE]
+```
+
+
+<!-- #### Usage
 ```
 background [NUM]
 ```
@@ -136,7 +178,7 @@ background 0
 ```
 ```
 bg 1
-```
+``` -->
 
 ---
 

@@ -17,6 +17,14 @@ function getCookie(cname) {
   return "";
 }
 
+function get_style(variable) {
+  return style_root_computed.getPropertyValue('--'+variable);
+}
+
+function set_style(variable,value) {
+// Set the value of variable --blue to another value (in this case "lightblue")
+style_root.style.setProperty('--' + variable, value);
+}
 
 let user_bg = getCookie("bg");
 if (user_bg != ""){
@@ -26,15 +34,23 @@ if (user_bg != ""){
     set_style("tertiary-color","#"+color_palettes[parseInt(user_bg)][2]);
 }
 
+let user_opacity = getCookie("USER_OPACITY");
+if (user_opacity != ""){
+  set_style("terminal-opacity",user_opacity);
+}
 
-function get_style(variable) {
-    // Get the styles (properties and values) for the root
-    // Alert the value of the --blue variable
-    console.log(variable+": "+style_root_computed.getPropertyValue('--'+variable));
-  }
+let user_bg_link = getCookie("USER_BG");
+if (user_bg_link != ""){
+  set_style("background-image","url('" + user_bg_link + "')");
+}
 
-function set_style(variable,value) {
-  // Set the value of variable --blue to another value (in this case "lightblue")
-  style_root.style.setProperty('--' + variable, value);
+let user_primary_color = getCookie("USER-PRIMARY-COLOR");
+let user_secondary_color = getCookie("USER-SECONDARY-COLOR");
+let user_tertiary_color = getCookie("USER-TERTIARY-COLOR");
+
+if (user_primary_color != ""){
+  set_style("primary-color",user_primary_color)
+  set_style("secondary-color",user_secondary_color)
+  set_style("tertiary-color",user_tertiary_color)
 }
 
