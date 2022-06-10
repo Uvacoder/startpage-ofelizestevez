@@ -74,3 +74,13 @@ if (user_font_size != ""){
   let user_size_rem = user_font_size / 16
   set_style("font-size", user_size_rem+"rem")
 }
+
+let user_bg_color= getCookie("USER-BG-COLOR")
+if (user_bg_color != ""){
+  set_style("bg-color",user_bg_color)
+}
+
+let user_fg_color= getCookie("USER-FG-COLOR")
+if (user_fg_color != ""){
+  set_style("fg-color",user_fg_color)
+}

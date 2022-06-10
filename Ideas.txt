@@ -1,9 +1,0 @@
-Ideas
-
-Create README and share with Startpages
-Create Neofetch
-
-
-Commands
-Change Neofetch
-Delete Localstorage

@@ -176,6 +176,34 @@ function style_colors(args = []) {
     }
 }
 
+function style_terminal(args) {
+    let color = args
+    if (!(testColor(color))) { textTerminalRespond("Your color is invalid.") }
+    else {
+        if (color.length == "4") {
+            color = color[0] + color[1] + color[1] + color[2] + color[2] + color[3] + color[3]
+        }
+        let r = parseInt(color.slice(1, 3), 16);
+        let g = parseInt(color.slice(3, 5), 16);
+        let b = parseInt(color.slice(5, 7), 16);
+
+        let rgba_string = "rgba(" + r + ", " + g + ", " + b + ", var(--terminal-opacity))"
+        console.log(rgba_string)
+        set_style("bg-color",rgba_string)
+        setCookie("USER-BG-COLOR",rgba_string)
+    }
+}
+
+function style_font(args) {
+    let color = args
+    if (!(testColor(color))) { textTerminalRespond("Your color is invalid.") }
+    else {
+        set_style("fg-color",color)
+        setCookie("USER-FG-COLOR",color)
+    }
+}
+
+
 async function style_bg_url(args = []) {
     let bg = args[0]
     if (await checkBgURL(bg)) {
@@ -358,14 +386,13 @@ function username(args = []) {
         describeUsage("u [USER NAME]")
     }
     let username = args[0]
-    if (username != undefined){
+    if (username != undefined) {
         localStorage.setItem("NONCOMMAND_USERNAME", username);
         username_change(username);
     }
 }
 
 /*
-MAYBE: SIZES?!?!? | [INT, INFERRED AS PX, INPUTTED AS REM]
 MAYBE ROUNDED CORNERS ?!?! | [INT, INFERRED AS PX]
 */
 function style(args = []) {
@@ -379,8 +406,12 @@ function style(args = []) {
         describeUsage("style set bg [BG_URL]");
         describeUsage("style set opacity [NUM FROM 0.0 TO 1.0]");
         describeUsage("style set o [NUM FROM 0.0 TO 1.0]");
+        describeUsage("style set terminal [HEX COLOR]");
+        describeUsage("style set term [HEX COLOR");
+        describeUsage("style set font [HEX COLOR]");
+        describeUsage("style set f [HEX COLOR");
         describeUsage("style unset [STYLE]");
-        textTerminalRespond("Current style types supported are: template (t), colors (c), background (bg), and opacity (o)")
+        textTerminalRespond("Current style types supported are: template (t), colors (c), background (bg), opacity (o), and terminal (term)")
         return
     }
     let main_arg = args[0]
@@ -410,9 +441,13 @@ function style(args = []) {
                 case "opacity":
                     style_opacity(tertiary_arg);
                     break
-                case "":
+                case "term":
+                case "terminal":
+                    style_terminal(tertiary_arg[0]);
                     break
-                case "":
+                case "f":
+                case "font":
+                    style_font(tertiary_arg[0]);
                     break
                 case "":
                     break
@@ -461,6 +496,16 @@ function style(args = []) {
                     deleteCookie("USER_OPACITY");
                     set_style("terminal-opacity", 0.8);
                     break
+                case "term":
+                case "terminal":
+                    set_style("bg-color","rgba(26,26,26,var(--terminal-opacity))")
+                    deleteCookie("USER-BG-COLOR")
+                    break
+                case "f":
+                case "font":
+                    set_style("fg-color","#fafafa")
+                    deleteCookie("USER-FG-COLOR")
+                    break
                 case undefined:
                     describeUsage("style unset [STYLE]");
                     break
@@ -502,7 +547,7 @@ function font(args = []) {
             switch (secondary_arg) {
                 case "face":
                     let styles = "@import url('" + tertiary_arg + "');"
-                    
+
                     let firstIndexOfFamily = tertiary_arg.indexOf("family=") + 7;
                     let lastIndexOfFamily = tertiary_arg.indexOf("&");
 
@@ -511,14 +556,14 @@ function font(args = []) {
                     let styleSheet = document.createElement("style");
                     styleSheet.innerText = styles;
                     document.head.appendChild(styleSheet); // THIS LINE RIGHT HERE OFFICER
-                    set_style("font-family","'"+ fontFamily +"', sans-serif");
+                    set_style("font-family", "'" + fontFamily + "', sans-serif");
                     setCookie("USER-FONT", tertiary_arg)
                     break
                 case "size":
                     let user_size = parseInt(tertiary_arg)
-                    if (!(user_size == NaN)){
+                    if (!(user_size == NaN)) {
                         let user_size_rem = user_size / 16
-                        set_style("font-size", user_size_rem+"rem")
+                        set_style("font-size", user_size_rem + "rem")
                         setCookie("USER-FONT-SIZE", user_size)
                     }
                     else {
@@ -533,9 +578,9 @@ function font(args = []) {
 
         case "unset":
             if (secondary_arg == undefined) { textTerminalRespond("The second argument is missing."); return; }
-            switch (secondary_arg){
+            switch (secondary_arg) {
                 case "face":
-                    set_style("font-family","'"+ 'Poppins' +"', sans-serif")
+                    set_style("font-family", "'" + 'Poppins' + "', sans-serif")
                     deleteCookie("USER-FONT")
                     break
 

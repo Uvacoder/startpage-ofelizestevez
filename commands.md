@@ -125,6 +125,8 @@ The "style" command is a great way to make this terminal website you own (atleas
 * change the colors of the prefix individually (3 colors in total, although)
 * change the background to a background of your choosing (as long as it's a URL and not a local file)
 * change the opacity of the terminal window
+* change the background color of the terminal window.
+* change the general font color.
 
 In the future, I plan to add the following features:
 * change the terminal background color
@@ -158,6 +160,18 @@ style set opacity [NUM FROM 0.0 TO 1.0]
 ```
 ```
 style set o [NUM FROM 0.0 TO 1.0]
+```
+```
+style set terminal [HEX COLOR]
+```
+```
+style set term [HEX COLOR
+```
+```
+style set font [HEX COLOR]
+```
+```
+style set f [HEX COLOR
 ```
 ```
 style unset [STYLE]

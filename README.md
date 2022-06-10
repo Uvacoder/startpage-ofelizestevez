@@ -16,6 +16,7 @@ I'm naming this website Just Another Terminal (JUT) since this ideas is not orig
 
 One important note would be to remember that this terminal is case-sensitive, therefore typing in commands such as "Help" or "HELP" will not invoke the "help" command.
 
+I would also like to emphasize that **this website uses cookies and localStorage** for its dynamic features. That means that out of the box, this website will not use either, but as you start to customzie it through the "style" command and the "create" command, you will be using both. 
 ---
 
 ## Usage
@@ -47,9 +48,19 @@ If you'd like to learn more about the individual commands, please [click here](c
 
 ---
 
-<!-- CREATE FEATURE LIST HERE -->
+## Feature List
 
+* Create (remove, backup and restore) new custom commands that open webpage links.
+* Quickly redirect to another website through the "browse" command.
+* Make Google Search queries.
+* Redirect to one of your logged in gmail and google drive accounts.
+* Go to reddit or any subreddit (with autocomplete for a set of subreddits).
+* Go to youtube or make a youtube query.
+* Go to twitch, make a twitch query, go to a specific channel, or go to a specific directory.
+* Change the font face (with any google font) and font size of the terminal.
+* Change the template, colors, background, terminal opacity, terminal background, and font color.
 
+---
 ## Future Ideas
 
 * Make ability to change subreddit list
