@@ -366,7 +366,7 @@ function username(args = []) {
 MAYBE: SIZES?!?!? | [INT, INFERRED AS PX, INPUTTED AS REM]
 MAYBE ROUNDED CORNERS ?!?! | [INT, INFERRED AS PX]
 */
-async function style(args = []) {
+function style(args = []) {
     if (args.includes("--help") || args.length == 0) {
         describeUsage("style [set OR unset] [STYLE TYPE]");
         describeUsage("style set template [INT]");
@@ -438,11 +438,13 @@ async function style(args = []) {
 
                     let default_bg = parseInt(get_style("background-image").slice(17, 19))
                     if (default_bg != NaN) {
+                        console.log("1")
                         set_style("primary-color", "#" + color_palettes[default_bg][0]);
                         set_style("secondary-color", "#" + color_palettes[default_bg][1]);
                         set_style("tertiary-color", "#" + color_palettes[default_bg][2]);
                     }
                     else {
+                        console.log("2")
                         set_style("primary-color", "#" + color_palettes[1][0]);
                         set_style("secondary-color", "#" + color_palettes[1][1]);
                         set_style("tertiary-color", "#" + color_palettes[1][2]);
