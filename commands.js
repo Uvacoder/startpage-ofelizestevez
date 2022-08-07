@@ -60,12 +60,12 @@ function link_handler(link) {
     link = link.includes("https://") || link.includes("http://") ? link : "https://" + link;
     link = link.includes('.') ? link : link + ".com";
 
-    if (link.includes("https://")) {
-        link = link.includes("www.") ? link : link.slice(0, link.lastIndexOf("https://") + 8) + "www." + link.slice(link.lastIndexOf("https://") + 8);
-    }
-    else {
-        link = link.includes("www.") ? link : link.slice(0, link.lastIndexOf("http://") + 7) + "www." + link.slice(link.lastIndexOf("http://") + 7);
-    }
+    // if (link.includes("https://")) {
+    //     link = link.includes("www.") ? link : link.slice(0, link.lastIndexOf("https://") + 8) + "www." + link.slice(link.lastIndexOf("https://") + 8);
+    // }
+    // else {
+    //     link = link.includes("www.") ? link : link.slice(0, link.lastIndexOf("http://") + 7) + "www." + link.slice(link.lastIndexOf("http://") + 7);
+    // }
 
     return link;
 }
